@@ -8,11 +8,33 @@
 import SwiftUI
 
 struct HomeView: View {
+    let adManager: InterstitialAdManager
+    @State private var timer: Timer?
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Bienvenido a GoogleAdmobTest!")
+                .font(.title)
+                .padding()
+        }
+        .onAppear {
+            startAdTimer()
+        }
+        .onDisappear {
+            timer?.invalidate()
+        }
+    }
+
+    func startAdTimer() {
+        adManager.showAdIfAvailable()
+        
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 120, repeats: true) { _ in
+            adManager.showAdIfAvailable()
+        }
     }
 }
 
 #Preview {
-    HomeView()
+    HomeView(adManager: InterstitialAdManager())
 }

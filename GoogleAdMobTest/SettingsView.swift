@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Aquí irá la configuración para eliminar anuncios con In-App Purchase.")
+            .padding()
     }
 }
 
